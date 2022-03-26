@@ -44,6 +44,7 @@ $$\dots$$
 ## QuickSort 알고리즘
    
 1. QucikSort(A, 0, 8)
+
 ![](https://dbscthumb-phinf.pstatic.net/3523_000_1/20141020113635377_9H3WMM4G9.jpg/ka7_134_i1.jpg?type=w383_fst&wm=N)   
 피봇은 A[1]=20으로 설정한다.
 
@@ -51,11 +52,15 @@ $$\dots$$
 *피봇을 기준으로 오른쪽으로 이동하며 큰 데이터 값을 찾고 마지막 데이터(A[8])부터 왼쪽으로 이동하여 작은 데이터 값을 찾는다.*
 
     * 피봇보다 큰 50, 작은 5의 데이터 교환 
+
     ![](https://dbscthumb-phinf.pstatic.net/3523_000_1/20141020113635737_WCHFJ3TQP.jpg/ka7_134_i2.jpg?type=w431_fst&wm=N)
+
     * 피봇보다 큰 40, 작은 19의 데이터 교환
+
     ![](https://dbscthumb-phinf.pstatic.net/3523_000_1/20141020113636026_B5Z549GIU.jpg/ka7_134_i3.jpg?type=w431_fst&wm=N)
 
 3. 마찬가지로 진행하여 피봇보다 큰 40, 작은 9의 데이터를 선택한다. **그런데 발견된 위치가 서로 교차하는데, 이러한 경우 두 값을 교환하지 않고 피봇 20과 작은 데이터인 9를 교환한다. 또한 기준키보다 큰 데이터를 발견하지 못하는 경우에도 피봇과 작은 데이터를 교환한다.**
+
 ![](https://dbscthumb-phinf.pstatic.net/3523_000_1/20141020113636532_97EATQHMY.jpg/ka7_134_i4.jpg?type=w431_fst&wm=N)
 
 4. line 3에서 QuickSort(A, 0, 5-1) = QuickSort(A, 0, 4)이 호출되고, 그다음 line4에서 QuickSort(A, 5+1, 8) = QuickSort(A, 6, 8)이 호출된다.
@@ -63,9 +68,11 @@ $$\dots$$
 5. QuickSort(A, 0, 4) 호출
 
     * 피봇 A[1] = 9라면 line 2에서 먼저 A[2]와 A[3]을 바꾼다.
+
     ![](https://dbscthumb-phinf.pstatic.net/3523_000_1/20141020113638267_ZP6RN3US0.jpg/ka7_134_i6.jpg?type=w431_fst&wm=N)
 
     * 마찬가지로 큰 데이터인 A[3] = 18과 작은 데이터인 A[2] = 5를 선택하는데, 발견된 위치가 교차되므로 피봇 9와 작은데이터 5를 교환한다.
+    
     ![](https://dbscthumb-phinf.pstatic.net/3523_000_1/20141020113638539_UXLM1P3AD.jpg/ka7_134_i7.jpg?type=w431_fst&wm=N)
 
 6. 이후에 QucikSort(A, 6, 8)이 호출되어 QuickSort 알고리즘이 수행되는데 위의 과정과 유사하므로 설명은 생략한다.
