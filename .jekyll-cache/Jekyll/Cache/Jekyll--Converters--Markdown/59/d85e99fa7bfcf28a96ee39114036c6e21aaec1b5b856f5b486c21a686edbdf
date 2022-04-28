@@ -1,0 +1,152 @@
+I"�<h1 id="2주차-수업">2주차 수업</h1>
+
+<ul>
+  <li>git설치 및 실행</li>
+</ul>
+
+<p>&lt;git 설치&gt;</p>
+
+<p><img src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https:%2F%2Fblog.kakaocdn.net%2Fdn%2Fbi6AzT%2FbtqSATUQsN0%2FZ4UCfkMHtXDBDNaMa6bdW0%2Fimg.png" alt="" /></p>
+
+<ol>
+  <li>git init .</li>
+</ol>
+
+<p>입력 -&gt; 프로젝트 하면서 처음에 한번만 하면 됨</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>init 명령어: 특정 폴더를 저장소로 만드는 것
+. : 현재 디렉토리
+.. : 상위 디렉토리
+	상위 폴더로 이동하고 싶을 때 -&gt; cd ..
+	하위 폴더로 이동하고 싶을 때 -&gt; cd my-awesome-site
+
+상위 폴더에서 나의 my-awesome-site를 git 저장소를 초기화하고 싶을 때 -&gt; 상위 폴더로 이동한 후 git init my-awesome-site 입력
+								(이미 my-awesome-site로 들어와있을 때에는 get init . 입력) 
+
+        --&gt;git으로 관리가 되는 파일로 됨 : git이 변경사항을 입력받고 업데이트도 스스로 함
+</code></pre></div></div>
+
+<ol>
+  <li>편집(post 파일 밑에 파일을 하나 만들기)
+    <ul>
+      <li>Visual Studio Code 설치 및 실행</li>
+    </ul>
+  </li>
+</ol>
+
+<p>&lt;Visual Studio Code 설치&gt;
+<img src="https://medium-company.com/wp-content/uploads/2020/06/vscode01-1024x577.png" alt="" /></p>
+
+<ol>
+  <li>
+    <p>뉴 파일 생성</p>
+
+    <p>VSCode 클릭 -&gt; New File 생성 -&gt; 년-월-일-파일 이름.md</p>
+
+    <p>VSCode에 입력하고 ( ctrl+s )누르면 저장됨</p>
+  </li>
+  <li>
+    <p>단축키[ ctrl + shift + p ] 입력 후 검색창에 mark 입력 -&gt;  Markdonw : Open preview to the side 클릭하면 입력하면서 결과를 바로 확인 가능</p>
+
+    <p>*<Visual Studio="" Code="" 기능="">*</Visual></p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> - #이 여러개 추가 될 수록 글씨체가 작아짐
+ -![](사진 링크 복붙) : 사진이 붙여짐
+ -[markdown](링크) : 하이퍼링크
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>git status</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> No commits yet
+
+ Untracked files:
+
+ (use "git add &lt;file&gt;..." to include in what will be committed)
+
+ .gitignore
+ 404.html
+ Gemfile
+ Gemfile.lock
+ _config.yml                                               
+ _posts/
+ about.markdown
+ index.markdown
+
+ nothing added to commit but untracked files present (use "git add" to track)
+</code></pre></div>    </div>
+
+    <p>–&gt; 이 stage에 올라와있지 않은데 이 파일들 중에 stage하고 싶은 파일들을 쓰라고 알려주는 문구</p>
+  </li>
+</ol>
+
+<p><em>나중에 추가로 코드를 쓰게되면</em></p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git restore --staged&lt;file&gt;
+ex) git restore --staged _posts/2022-02-11-Lab-02.md  위 문장 입력후 4번째 순서 다시 하면 됨
+</code></pre></div></div>
+
+<ol>
+  <li>
+    <p>git add : 앞선 파일 들 중에서 stage로 올리는 개념</p>
+
+    <p>(1) 전체 다 올리고 싶다 -&gt; get add . ( . 은 현재 폴더) -&gt; my-awesome-site에 있는 모든 파일(하위, 상위)들이 다 stage에 올라감</p>
+
+    <p>(2) 일부분만 올리고 싶다 -&gt; .gitignore 파일에 기록해주면 기록된 파일을 제외하고 stage에 올라감</p>
+  </li>
+  <li>
+    <p>다시 git add . 으로 올려주고 git status를 입력하면</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> Changes to be committed:
+ (use "git rm --cached &lt;file&gt;..." to unstage)
+ new file:   2022-03-10-hello.markdown
+ new file:   2022-03-10-welcome-to-jekyll.markdown
+ new file:   2022-03-11-Lab-002.md.markdown
+ new file:   2022.03.10-hello.markdown.txt  --&gt;new file 문구가 초록색으로 변하면 stage로 잘 올라갔다는 뜻
+</code></pre></div>    </div>
+
+    <p>*(use “git rm –cached <file>..." to unstage) : stage에서 내리고 싶은 파일은 저 문구를 써서 입력해라*</file></p>
+  </li>
+  <li>
+    <p>버전 올리기(commit)</p>
+
+    <p>&lt; 기본 형태 : git commit -m “commit message” &gt;</p>
+
+    <p>ex) 무엇을 고쳐서 버전을 올리는건지 “ “안에 자세히 써야함 “fixed something” , “add something”</p>
+
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code> &lt;git commit -m "init"입력&gt;
+ [master (root-commit) 3582206] init
+ 4 files changed, 69 insertions(+)
+ create mode 100644 2022-03-10-hello.markdown
+ create mode 100644 2022-03-10-welcome-to-jekyll.markdown
+ create mode 100644 2022-03-11-Lab-002.md.markdown
+ create mode 100644 2022.03.10-hello.markdown.txt
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>git push : commit했던 내용이 github에 저장됨</p>
+    <ol>
+      <li>git remote add origin https://github.com/Yejiin21/Yejiin21.github.io.git</li>
+      <li>git branch -M main</li>
+      <li>git push -u origin main</li>
+    </ol>
+  </li>
+</ol>
+
+<p>git log : commit했던 이력들을 볼 수 있음</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    commit 3582206718b2ec44f0654e40a6eb0606905395c3 (HEAD -&gt; master)
+    Author: YeJin &lt;kyg9802@naver.com&gt;
+    Date:   Fri Mar 11 18:37:43 2022 +0900
+
+    init
+</code></pre></div></div>
+
+<p><em>2주차에서 배운 대표적인 명령어</em>
+1) ‘git add’ : 파일을 stage에 올리는 명령어
+2) ‘git commit -m “commit message”’ : 파일 버전을 올리는 명령어
+3) ‘git push’ : github (온라인 저장소) -&gt; 내가 commit 했던 내용을 복사를 해서 github에 집어넣을 때 사용 -&gt; github 업로드
+4) ‘git pull’ : github 다운로드
+5) ‘git status’ : 상태보기
+6) ‘git log’</p>
+:ET

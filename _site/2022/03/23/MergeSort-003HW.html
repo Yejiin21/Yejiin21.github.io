@@ -1,0 +1,133 @@
+<h1 id="분활-정복divide-and-conquer-알고리즘이란">분활 정복(Divide-and-Conquer) 알고리즘이란?</h1>
+<p>주어진 문제의 입력을 분활하여 문제를 해결(정복)하는 방식의 알고리즘이다.</p>
+
+<p>분활된 입력에 대하여 동일한 알고리즘을 적용하여 해를 계산하며, 이들의 해를 취합하여 원래 문제의 해를 얻는다.</p>
+
+<p>여기서 분활된 입력에 대한 문제를 부분문제(subproblem)이라 하고, 부분문제의 해를 부분해라고 한다.</p>
+
+<p>부분문제는 더 이상 분할할 수 없을 때까지 계속 분할한다.</p>
+
+<p>\(\dots\)</p>
+<h1 id="합병정렬merge-sort">합병정렬(Merge Sort)</h1>
+<p>합병정렬은 입력이 2개의 부분문제로 분활되고, 부분문제의 크기가 1/2로 감소하는 분활 정복 알고리즘이다.</p>
+
+<p>즉, n개의 숫자들을 n/2개씩 2개의 부분문제로 분할하고, 각각의 부분문제를 순환적으로 합병 정렬할 후, 2개의 정렬된 부분을 합병하여 정렬(정복)한다. 즉, 합병과정이 (문제를) 정복하는 것이다.</p>
+
+<p><em>합병(merge)이란 2개의 각각 정렬된 숫자들을 1개의 정렬된 숫자들로 합치는 것이다.</em></p>
+
+<p><img src="https://postfiles.pstatic.net/MjAyMjAyMTBfMTcx/MDAxNjQ0NDcyNDI2OTQ5.-tTCQJ9shLYipEBlsG2-95phLvN0Kpjus-X4tBq1IYog.yKw5lRPNn2lHCp40Gj6R3Dr61Bc25yZg8BNTAwZkBAwg.GIF.agn710/mergeSortAlgorithm.gif?type=w966" alt="" /></p>
+
+<p>ex) 배열A와 배열B가 합병되어 배열C에 저장된 것</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>배열 A : 6 14 18 20 29
+                                   =&gt; 배열 C : 1 2 6 14 15 18 20 25 29 30 45
+배열 B : 1 2 15 25 30 45
+</code></pre></div></div>
+
+<p>&lt;분활 정복에 기반을 둔 합병 정렬 알고리즘&gt;</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>       MergeSort(A,p,q)
+       입력: A[p]~A[q]
+       출력: 정렬된 A[p]~[q]
+(1)    if( p &lt; q ) {              // 배열의 원소의 수가 2개 이상이면  
+(2)    k = |(p+q)/2|              // k=반으로 나누기 위한 중간 원소의 인덱스
+(3)    MergeSort(A,p,k)           // 앞부분 순환 호출   
+(4)    MergeSort(A,k+1,q)         // 뒷부분 순환 호출
+(5)    A[p]~A[k]와 A[k+1]~A[q]를 합병한다.
+(6) }
+</code></pre></div></div>
+
+<ul>
+  <li>Line 1에서는 정렬할 부분의 원소의 수가 2개 이상일 때에만 다음 단계가 수행되도록 한다. 만약 p=q(즉, 원소의 수가 1)이면, 그 자체로 정렬된 것이므로 line 2~5가 수행되지 않은 채 이전 호출했던 곳으로 리턴한다.</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>Line 2에서는 정렬할 부분의 원소들을 1/2로 나누기 위해, k =</td>
+          <td>(p+q)/2</td>
+          <td>를 계산한다. 단, 원소의 수가 홀수인 경우, k는 소수점 이하를 버린 정수이다.</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+  <li>Line 3~4에서는 MergeSort(A,p,k)와 MergeSort(A,k+1,q)를 순환 호출하여 각각 정렬한다.</li>
+  <li>Line 5에서는 line 3~4에서 각각 정렬된 부분을 합병한다. 합병 과정의 마지막에는 임시 배열에 있는 합병된 원소들을 배열 A로 복사한다. 즉, 임시 배열 B[p]~[q]로 복사한다.</li>
+</ul>
+
+<p>\(\dots\) 
+아래 그림은 n=8인 배열 A=[37, 10, 22, 30, 35, 13, 25,24]에 대하여 MergeSort 알고리즘이 수행되는 과정을 보이고 있다. 원 속의 숫자들은 알고리즘이 수행된 순서를 나타낸다.</p>
+
+<p>다음의 그림에서 분활하여 순환 호출하는 것은 line 3~4에서 수행되고, 합병은 line 5에서 수행된다.</p>
+
+<p><img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA3MzBfOTAg%2FMDAxNTk2MDcxMTY3Mzkw.HBZBJDLMu2fM7CcS_jBAbfI8mmHSaMZDzGp75iKUTHog.Y5exv5QkBOV_2V1B6zORlBjX_OCPIpnptnD89FF3cr8g.PNG.wongoni%2F%25C4%25B8%25C3%25B3.PNG&amp;type=sc960_832" alt="" /></p>
+
+<h3 id="시간복잡도-알아보기"><em>시간복잡도 알아보기</em></h3>
+<h3 id="정렬의-시간복잡도는-일반적으로-숫자의-비교-횟수로-나타낸다">정렬의 시간복잡도는 일반적으로 숫자의 비교 횟수로 나타낸다.</h3>
+<p>위 그림에서 알고리즘이 수행한 비교 횟수를 모두 계산해보자. 단, 비교 횟수를 계산할 때, 수행 순서는 무시해도된다.</p>
+
+<p>&lt;분할&gt;</p>
+
+<p>분할하는 부분은 배열의 중간 인덱스 계산과 2번의 순환 호출을 하는 것이므로 O(1) 시간이 걸린다.</p>
+
+<p>&lt;합병&gt;</p>
+
+<p>합병을 하는 수행 시간은 입력의 크기에 비례한다. 즉, 2개의 정렬된 배열 A와 B의 크기가 각각 n과 m이라면, 최대 비교 횟수는 (n+m-1)이다.</p>
+
+<p>왜냐하면 합병하는데 2개의 숫자를 1번 비교할 때마다, 하나의 ‘승자’(즉, 작은 숫자)가 탄생하고, 승자는 합병된 배열 C에 저장되기 때문이다. 따라서 배열 C에는 결국 배열 A와 B의 모든 (n+m)개의 숫자들이 저장되나, 가장 마지막에 저장되는 숫자는 비교할 숫자가 없으므로 최대 비교 횟수는 (n+m-1)이다.</p>
+
+<p>즉 합병의 시간복잡도는 O(m+n)이다.</p>
+
+<p>&lt;합병 정렬에서 수행되는 총 비교 횟수&gt;</p>
+
+<ol>
+  <li>각각의 합병에 대해서 몇번의 비교가 수행되었는지를 계산하여 이들을 모두 합한 수이다.</li>
+  <li>
+    <p>합병 단계에서 각 층별로 살펴보는 것이다</p>
+
+    <p>각 층을 살펴보면 모든 숫자(즉, n=8개의 숫자)가 합병에 참여하고 있다.
+ 합병의 수행시간은 합병되는 입력 크기에 비례하므로 각 층에서 수행된 비교 횟수는 O(n)이다.</p>
+
+    <p>### <em>그렇다면 입력의 크기가 n일 때에는 몇 개의 층이 만들어질까?</em></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>입력크기</th>
+          <th>예</th>
+          <th>층</th>
+          <th> </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>n</td>
+          <td>8</td>
+          <td> </td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>$\frac{n}{2}$</td>
+          <td>4</td>
+          <td>1층</td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>$\frac{n}{4}$ = $\frac{n}{2^2}$</td>
+          <td>2</td>
+          <td>2층</td>
+          <td> </td>
+        </tr>
+        <tr>
+          <td>$\frac{n}{8}$ = $\frac{n}{2^3}$</td>
+          <td>1</td>
+          <td>3층</td>
+          <td> </td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+
+<p>n을 계속하여 $\frac{1}{2}$로 나누다가, 더 이상은 나눌 수 없는 크기인 1이 될 때 분할을 중단한다. 따라서 k번 $\frac{1}{2}$로 분할했으면 k개의 층이 생기는 것이고, k는 n=2^k으로부터 logn임을 알 수 있다.</p>
+
+<p>결과적으로 합병 정렬의 시간복잡도는 (층수)<em>O(n) = logn</em>O(n) = O(nlogn)이다.</p>
